@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Частный детектив в Красноярске</title>
+  
+  <style>
+    :root {
+      --primary: #c41e3b;
+      --primary-dark: #a31830;
+      --dark: #0d0d0d;
+      --darker: #050505;
+      --gray: #1a1a1a;
+      --text: #e0e0e0;
+      --text-muted: #a0a0a0;
+      --telegram: #229ED9;
+      --telegram-dark: #1a7bb3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--darker);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.85) 100%),
+                  url('https://files.catbox.moe/ghtd59.jpeg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-size: clamp(1.3rem, 4vw, 1.8rem);
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 1.1rem 2.8rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 10px 30px rgba(196, 30, 59, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-6px) scale(1.04);
+      background: var(--primary-dark);
+      box-shadow: 0 20px 50px rgba(196,30,59,0.5);
+    }
+
+    .telegram-section {
+      padding: 140px 0;
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .telegram-section h2 {
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #229ED9, #5bc0eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .telegram-section p {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-telegram {
+      background: var(--telegram);
+      color: white;
+      padding: 1.5rem 4rem;
+      border: none;
+      border-radius: 60px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      box-shadow: 0 15px 50px rgba(34, 158, 217, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-telegram:hover {
+      transform: translateY(-10px) scale(1.06);
+      background: var(--telegram-dark);
+      box-shadow: 0 30px 80px rgba(34, 158, 217, 0.7);
+    }
+
+    .btn-telegram::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: left 0.7s;
+    }
+
+    .btn-telegram:hover::before {
+      left: 100%;
+    }
+
+    .telegram-logo {
+      width: 38px;
+      height: 38px;
+      fill: white;
+    }
+
+    .services {
+      padding: 140px 0 100px;
+      background: var(--darker);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      margin-bottom: 1rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #c41e3b, #ff4d6a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+      margin-top: 5rem;
+    }
+
+    .service-card {
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(196, 30, 59, 0.15);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(196,30,59,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 0;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--primary);
+      box-shadow: 0 30px 70px rgba(196,30,59,0.2);
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    footer {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      background: #000;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3.8rem; }
+      .hero p { font-size: 1.4rem; }
+      .telegram-section { padding: 100px 0; }
+      .btn-telegram { padding: 1.3rem 3rem; font-size: 1.3rem; }
+      .telegram-logo { width: 32px; height: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Частный детектив в Красноярске</h1>
+      <p>Конфиденциально. Профессионально. Быстро.<br>Ваша безопасность — моя главная задача.</p>
+      <a href="#telegram" class="btn-primary">Связаться в Telegram</a>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title">Мои услуги</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Сбор информации</h3>
+          <p>Поиск людей, проверка биографии, сбор доказательств, мониторинг активности в сети и в реальной жизни.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Наружное наблюдение</h3>
+          <p>Профессиональное наружное наблюдение, фото- и видеофиксация без нарушения закона.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Проверка на измену</h3>
+          <p>Быстро и деликатно выясню всю правду. 100% конфиденциальность гарантирована.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Сбор доказательств для суда</h3>
+          <p>Подготовка материалов, которые примут в суде: фото, видео, документы, переписки.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>OSINT и цифровой след</h3>
+          <p>Глубокий анализ открытых источников, поиск в даркнете, восстановление удалённой информации.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Консультации и защита</h3>
+          <p>Помогу защитить вашу личную жизнь, бизнес и репутацию от угроз и утечек.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Поиск пропавших людей</h3>
+          <p>Поиск родственников, друзей, пропавших без вести. Восстановление утраченных социальных связей и семейных контактов.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Поиск имущества</h3>
+          <p>Поиск угнанных автомобилей, похищенного имущества. Сотрудничество с лизинговыми компаниями, банками и страховыми службами.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="telegram" class="telegram-section">
+    <div class="container">
+      <h2>Свяжитесь со мной в Telegram</h2>
+      <p>Первая консультация — бесплатная и полностью анонимная.<br>Пишите прямо сейчас — отвечу в течение 5–15 минут.</p>
+      
+      <a href="https://t.me/Detektive1" target="_blank" class="btn-telegram">
+        <svg class="telegram-logo" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="120" fill="#229ED9"/>
+          <path d="M98 175.5c-3.9 0-3.2-1.5-4.6-5.3L79 133l-24.5-7.6c-5.3-1.7-5.4-5.3 1.1-7.9l96.3-37.1c4.5-1.7 8.4 1.1 6.9 6.5l-16.5 77.8c-1.2 5.5-4.6 6.9-9.4 4.3l-25.3-18.6-12.2 11.8c-1.4 1.4-2.6 2.7-5.2 2.7z" fill="white"/>
+        </svg>
+        Перейти в Telegram @Detektive1
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Частный детектив в Красноярске. Все права защищены.<br>Работаю строго в рамках закона РФ.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
